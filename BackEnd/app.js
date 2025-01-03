@@ -27,7 +27,16 @@ require('dotenv').config()
 app.use(express.json())
 
 // Middlewares to enable CORS for cross origin requests
-app.use(cors())
+app.use(cors({
+    origin: [
+        "http://localhost:3000", // Frontend during local development
+        "https://your-vercel-project.vercel.app" // Frontend deployed on Vercel
+    ],
+    methods: ["POST", "GET"], // Allow only POST and GET requests
+    credentials: true // Allow cookies to be sent with requests
+}));
+);
+
 
 // Resolve the absolute path of the Current Directory 
 const _dirname = path.resolve()
