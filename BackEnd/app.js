@@ -32,10 +32,6 @@ app.use(cors())
 // Resolve the absolute path of the Current Directory 
 const _dirname = path.resolve()
 
-// Serve static files from the frontends dist directory 
-//app.use(express.static(path.join(_dirname, "/FrontEnd/dist")))
-
-
 // Dynamically load and use all routes in the routes directory 
 try {
     const routesPath = path.join(__dirname, 'routes')
@@ -45,12 +41,6 @@ try {
 } catch (error) {
     console.error('Error loading routes:', error.message)
 }
-
-
-// Handle all unmatched roots by serving the frontend index.html 
-app.get('*', (_, res) => {
-    res.sendFile(path.resolve(_dirname, "FrontEnd", "dist", "index.html"))
-})
 
 
 // Define the server function 
